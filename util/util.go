@@ -4,28 +4,26 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
-	"github.com/mharbol/aoc-2023/solution"
 )
 
 const _INPUT_PATH string = "../inputs/"
 
 var dayInputMap map[uint8][]string = make(map[uint8][]string)
 
-func ReadProblemInfo(s solution.Solution) ([]string, error) {
+func ReadProblemInfo(day uint8) ([]string, error) {
 
 	var fileContents []string
 	var ok bool
 	var err error
 
-	fileContents, ok = dayInputMap[s.Day()]
+	fileContents, ok = dayInputMap[day]
 
 	if !ok {
-		fileContents, err = readDayInput(makeFilePath(s.Day()))
+		fileContents, err = readDayInput(makeFilePath(day))
 		if err != nil {
 			return nil, err
 		}
-		dayInputMap[s.Day()] = fileContents
+		dayInputMap[day] = fileContents
 	}
 	return fileContents, nil
 }
