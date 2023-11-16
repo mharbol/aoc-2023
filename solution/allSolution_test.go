@@ -19,10 +19,13 @@ func testPartX(day, part uint8, expected string, t *testing.T) {
 	var actual string
 	var err error
 
-	if part == 1 {
-		actual, err = s.Part1()
-	} else {
-		actual, err = s.Part2()
+	switch part {
+	case 1:
+		actual, err = Solve(s, 1)
+	case 2:
+		actual, err = Solve(s, 2)
+    default:
+		t.Fatalf("Part must be 1 or 2.")
 	}
 
 	if err != nil {
