@@ -6,15 +6,17 @@ import (
 	"strings"
 )
 
-const _INPUT_PATH string = "../inputs/"
+const _INPUT_PATH string = "inputs/"
 
 var dayInputMap map[uint8][]string = make(map[uint8][]string)
 
 func ReadProblemInfo(day uint8) ([]string, error) {
 
-	var fileContents []string
-	var ok bool
-	var err error
+	var (
+		fileContents []string
+		ok           bool
+		err          error
+	)
 
 	fileContents, ok = dayInputMap[day]
 

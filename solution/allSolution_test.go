@@ -1,6 +1,21 @@
 package solution
 
-import "testing"
+import (
+	"os"
+	"path"
+	"runtime"
+	"testing"
+)
+
+// Sets the filepath to the correct place for the purposes of these tests.
+func init() {
+    _, filename, _, _ := runtime.Caller(0)
+    dir := path.Join(path.Dir(filename), "..")
+    err := os.Chdir(dir)
+    if err != nil {
+        panic(err)
+    }
+}
 
 func TestAllSolutions(t *testing.T) {
 
@@ -11,20 +26,17 @@ func TestAllSolutions(t *testing.T) {
 }
 
 func testPartX(day, part uint8, expected string, t *testing.T) {
-	s, ok := allSolutions[day]
-	if !ok {
-		t.Fatalf("Solution for day %d not found", day)
-	}
-
-	var actual string
-	var err error
+	var (
+		actual string
+		err    error
+	)
 
 	switch part {
 	case 1:
-		actual, err = Solve(s, 1)
+		actual, err = Solve(day, 1)
 	case 2:
-		actual, err = Solve(s, 2)
-    default:
+		actual, err = Solve(day, 2)
+	default:
 		t.Fatalf("Part must be 1 or 2.")
 	}
 

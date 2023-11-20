@@ -9,10 +9,10 @@ func (s *Day00) Day() uint8 {
 
 func (s *Day00) Part1(lines []string) (string, error) {
 
-	return "", nil
+	return "d0p1", nil
 }
 
 func (s *Day00) Part2(lines []string) (string, error) {
 
-	return "", nil
+	return "d0p2", nil
 }

@@ -5,7 +5,7 @@ import "testing"
 func TestMakeFilePathSingleDigit(t *testing.T) {
 	const day uint8 = 1
 
-	expected := "../inputs/day_01.txt"
+	expected := "inputs/day_01.txt"
 	actual := makeFilePath(day)
 
 	if expected != actual {
@@ -16,7 +16,7 @@ func TestMakeFilePathSingleDigit(t *testing.T) {
 func TestMakeFilePathDoubleDigit(t *testing.T) {
 	const day uint8 = 23
 
-	expected := "../inputs/day_23.txt"
+	expected := "inputs/day_23.txt"
 	actual := makeFilePath(day)
 
 	if expected != actual {
@@ -39,7 +39,7 @@ func TestReadDayInputSuccess(t *testing.T) {
 }
 
 func TestReadDayInputFailure(t *testing.T) {
-	const path = "../inputs/day_50.txt"
+	const path = "inputs/day_50.txt"
 
 	_, err := readDayInput(path)
 

@@ -2,13 +2,17 @@ package solution
 
 import (
 	"errors"
+	"fmt"
 
-	"github.com/mharbol/aoc-2023/solution/days"
 	"github.com/mharbol/aoc-2023/util"
 )
 
-var allSolutions = map[uint8]Solution{
-    0: &days.Day00{},
+func GetSolution(day uint8) (Solution, error) {
+	s, ok := allSolutions[day]
+	if !ok {
+		return nil, errors.New(fmt.Sprintf("No Solution exists for day %d", day))
+	}
+	return s, nil
 }
 
 type Solution interface {
@@ -17,9 +21,13 @@ type Solution interface {
 	Part2([]string) (string, error)
 }
 
-func Solve(s Solution, part uint8) (string, error) {
-	lines, err := util.ReadProblemInfo(s.Day())
+func Solve(day, part uint8) (string, error) {
+	s, err := GetSolution(day)
+	if err != nil {
+		return "", err
+	}
 
+	lines, err := util.ReadProblemInfo(s.Day())
 	if err != nil {
 		return "", err
 	}
@@ -30,6 +38,6 @@ func Solve(s Solution, part uint8) (string, error) {
 	case 2:
 		return s.Part2(lines)
 	default:
-		return "", errors.New("Part must be 1 or 2")
+		return "", errors.New(fmt.Sprintf("Part must be 1 or 2, received %d", part))
 	}
 }
