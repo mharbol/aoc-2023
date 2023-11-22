@@ -7,37 +7,39 @@ import (
 	"github.com/mharbol/aoc-2023/util"
 )
 
-func GetSolution(day uint8) (Solution, error) {
-	s, ok := allSolutions[day]
-	if !ok {
-		return nil, errors.New(fmt.Sprintf("No Solution exists for day %d", day))
-	}
-	return s, nil
-}
+type solFunc func([]string) (string, error)
 
-type Solution interface {
-	Day() uint8
-	Part1([]string) (string, error)
-	Part2([]string) (string, error)
+type solFuncTuple struct {
+    part1 solFunc
+    part2 solFunc
 }
 
 func Solve(day, part uint8) (string, error) {
-	s, err := GetSolution(day)
+
+	sol, err := GetSolution(day)
 	if err != nil {
 		return "", err
 	}
 
-	lines, err := util.ReadProblemInfo(s.Day())
+	lines, err := util.GetDayInput(day)
 	if err != nil {
 		return "", err
 	}
 
 	switch part {
 	case 1:
-		return s.Part1(lines)
+		return sol.part1(lines)
 	case 2:
-		return s.Part2(lines)
+		return sol.part2(lines)
 	default:
 		return "", errors.New(fmt.Sprintf("Part must be 1 or 2, received %d", part))
 	}
+}
+
+func GetSolution(day uint8) (*solFuncTuple, error) {
+	sol, ok := allSolutions[day]
+	if !ok {
+		return nil, errors.New(fmt.Sprintf("No Solution exists for day %d", day))
+	}
+	return sol, nil
 }

@@ -1,0 +1,5 @@
+package solution
+
+var allExpected = map[uint8]expectedPair{
+	0: {"d0p1", "d0p2"},
+}

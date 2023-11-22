@@ -10,7 +10,7 @@ const _INPUT_PATH string = "inputs/"
 
 var dayInputMap map[uint8][]string = make(map[uint8][]string)
 
-func ReadProblemInfo(day uint8) ([]string, error) {
+func GetDayInput(day uint8) ([]string, error) {
 
 	var (
 		fileContents []string
