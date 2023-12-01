@@ -11,4 +11,6 @@ type... but they didn't include it in the stdlib so I can't or have to make my o
 ## Problems and Rationale
 
 ### [Day 01](solution/days/day01.go)
-TBD
+Nothing too fancy.
+For part one, I just looped forward and back to find the first and last digits.
+For part two, I decided not to get fancy with front and back sliders and just made an array with all the "numbers" found in the string.
