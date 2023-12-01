@@ -26,14 +26,14 @@ func TestMakeFilePathDoubleDigit(t *testing.T) {
 
 func TestReadDayInputSuccess(t *testing.T) {
 	const path = "../inputs/day_00.txt"
-	expected := []string{"line 1", "line 2", "line 3", ""}
+	expected := []string{"line 1", "line 2", "line 3"}
 
 	actual, err := readDayInput(path)
 
 	if err != nil {
 		t.Fatalf("Got error %s", err.Error())
 	}
-	if expected[0] != actual[0] && expected[1] != actual[1] && expected[2] != actual[2] && expected[3] != actual[3] {
+	if expected[0] != actual[0] || expected[1] != actual[1] || expected[2] != actual[2] {
 		t.Fatalf("Expected did not match actual")
 	}
 }

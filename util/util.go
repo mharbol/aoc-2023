@@ -35,7 +35,13 @@ func readDayInput(filePath string) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	return strings.Split(string(fileDump), "\n"), nil
+    // when I split over \n, the last item is a ""
+    // prune it off
+    dumpSlice := strings.Split(string(fileDump), "\n")
+    if len(dumpSlice) > 1 {
+        dumpSlice = dumpSlice[:len(dumpSlice) - 1]
+    }
+	return dumpSlice, nil
 }
 
 func makeFilePath(day uint8) string {

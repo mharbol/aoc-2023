@@ -7,9 +7,6 @@ func Day01Part1(lines []string) (string, error) {
 	acc := 0
 
 	for _, line := range lines {
-		if line == "" {
-			break
-		}
 		first := firstDigit(line)
 		last := lastDigit(line)
 		acc += 10*first + last
@@ -23,9 +20,6 @@ func Day01Part2(lines []string) (string, error) {
 	acc := 0
 
 	for _, line := range lines {
-		if line == "" {
-			break
-		}
 		nums := detectWordsAndNums(line)
 		acc += 10*nums[0] + nums[len(nums)-1]
 	}
@@ -34,20 +28,20 @@ func Day01Part2(lines []string) (string, error) {
 }
 
 func firstDigit(line string) int {
-	for i := 0; i < len(line); i++ {
-		d := line[i]
-		if d >= '0' && d <= '9' {
-			return int(d - '0')
+	for index := 0; index < len(line); index++ {
+		digit := line[index]
+		if digit >= '0' && digit <= '9' {
+			return int(digit - '0')
 		}
 	}
 	return -1
 }
 
 func lastDigit(line string) int {
-	for i := len(line) - 1; i >= 0; i-- {
-		d := line[i]
-		if d >= '0' && d <= '9' {
-			return int(d - '0')
+	for index := len(line) - 1; index >= 0; index-- {
+		digit := line[index]
+		if digit >= '0' && digit <= '9' {
+			return int(digit - '0')
 		}
 	}
 	return -1
@@ -57,14 +51,14 @@ func detectWordsAndNums(line string) []int {
 
 	var ret []int
 
-	for i := 0; i < len(line); i++ {
-		d := line[i]
-		if d >= '0' && d <= '9' {
-			ret = append(ret, int(d-'0'))
+	for index := 0; index < len(line); index++ {
+		digit := line[index]
+		if digit >= '0' && digit <= '9' {
+			ret = append(ret, int(digit-'0'))
 			continue
 		}
 		for num, str := range numArray {
-			if substring(line, i, i+len(str)) == str {
+			if substring(line, index, index+len(str)) == str {
 				ret = append(ret, num)
 			}
 		}
