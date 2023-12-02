@@ -1,0 +1,11 @@
+package days
+
+func PART1(lines []string) (string, error) {
+
+	return "", nil
+}
+
+func PART2(lines []string) (string, error) {
+
+	return "", nil
+}
