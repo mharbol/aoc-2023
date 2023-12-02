@@ -19,3 +19,6 @@ For part two, I decided not to get fancy with front and back sliders and just ma
 A little hacky just copying logic from part one to part two... but it works.
 Systematically broke down the lines using `strings.Split()` until I got a count and color.
 From there just did some easy sums and products to get the desired results.
+
+### [Day 03](solution/days/day03.go)
+TBD
