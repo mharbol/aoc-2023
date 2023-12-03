@@ -21,4 +21,9 @@ Systematically broke down the lines using `strings.Split()` until I got a count 
 From there just did some easy sums and products to get the desired results.
 
 ### [Day 03](solution/days/day03.go)
-TBD
+This was a fun one.
+For part one, looped through the rows, parse the number, and look for an adjacent symbol on the border.
+Part two was a little more hacky.
+Found all the numbers the same as before but did a perimeter search just for `*` characters.
+If I encountered one, I would use the coordinates as the key to a map whose values were lists of the adjacent numbers.
+Once looping was complete, sum the products of the lists with exactly two items.
