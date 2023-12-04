@@ -46,12 +46,9 @@ func Day03Part2(lines []string) (string, error) {
 
 				if stars != nil {
 					for _, location := range stars {
-						valsAdjacentToStar := starsWithNums[location]
-						valsAdjacentToStar = append(valsAdjacentToStar, num)
-						starsWithNums[location] = valsAdjacentToStar
+						starsWithNums[location] = append(starsWithNums[location], num)
 					}
 				}
-
 				col = endOfNum
 			}
 		}
