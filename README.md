@@ -27,3 +27,6 @@ Part two was a little more hacky.
 Found all the numbers the same as before but did a perimeter search just for `*` characters.
 If I encountered one, I would use the coordinates as the key to a map whose values were lists of the adjacent numbers.
 Once looping was complete, sum the products of the lists with exactly two items.
+
+### [Day 04](solution/days/day04.go)
+TBD
