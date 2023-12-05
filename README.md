@@ -39,3 +39,6 @@ Part two I had some time to think of throughout the day.
 Count the wins same as before but then add to that number of cards down the games.
 I made a slice with all the counts of cards to easily add to and when it was time to add winning cards, I would just add the currently
 played card's count. Not sure how graceful that is but it works.
+
+### [Day 05](solution/days/day05.go)
+TBD
