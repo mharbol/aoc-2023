@@ -4,18 +4,36 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+	"sync"
 )
 
 func Day04Part1(lines []string) (string, error) {
 
 	acc := 0
 
+	ch := make(chan int)
+	var wg sync.WaitGroup
+
 	for _, line := range lines {
-		numWins := countWins(line)
-		acc += scoreWins(numWins)
+		wg.Add(1)
+		go countAndScore(line, ch, &wg)
+	}
+
+	go func() {
+		defer close(ch)
+		wg.Wait()
+	}()
+
+	for num := range ch {
+		acc += num
 	}
 
 	return fmt.Sprint(acc), nil
+}
+
+func countAndScore(card string, ch chan<- int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	ch <- scoreWins(countWins(card))
 }
 
 func Day04Part2(lines []string) (string, error) {
@@ -34,12 +52,12 @@ func Day04Part2(lines []string) (string, error) {
 
 		// loop down the slice numMatches times adding the number of
 		// cards we had for this game
-        numCardsPerGame := countCards[gameNumber]
+		numCardsPerGame := countCards[gameNumber]
 
 		for index := gameNumber + 1; index < len(lines) && index < gameNumber+numMatches+1; index++ {
-            countCards[index] += numCardsPerGame
+			countCards[index] += numCardsPerGame
 		}
-        acc += numCardsPerGame
+		acc += numCardsPerGame
 	}
 	return fmt.Sprint(acc), nil
 }
