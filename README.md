@@ -29,4 +29,13 @@ If I encountered one, I would use the coordinates as the key to a map whose valu
 Once looping was complete, sum the products of the lists with exactly two items.
 
 ### [Day 04](solution/days/day04.go)
-TBD
+Today felt really good.
+Got comforable with some of Go's packages like `regexp` and `strings`.
+The have some nifty functions to use... just have to remember there are more functions than methods.
+For part one I was able to pull out the card number, separate the left and right sides, and get lists of number (as strings) very easily.
+From there the winning number strings were the keys to a `map` with their count (initially 0).
+Easy enough to sum them up and determine the score.
+Part two I had some time to think of throughout the day.
+Count the wins same as before but then add to that number of cards down the games.
+I made a slice with all the counts of cards to easily add to and when it was time to add winning cards, I would just add the currently
+played card's count. Not sure how graceful that is but it works.
