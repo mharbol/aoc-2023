@@ -28,27 +28,7 @@ func Day05Part1(lines []string) (string, error) {
 
 func Day05Part2(lines []string) (string, error) {
 
-	_, mappers := parsePart1(lines)
-	seedPairs := part2Seeds(lines)
-	var vals []int
-
-	for _, seedPair := range seedPairs {
-		for seedPair.current() != -1 {
-			num := seedPair.getNextSeedNumber()
-			if num == -1 {
-				continue
-			}
-			val := num
-			for _, mapper := range mappers {
-				val = mapper.getDesination(val)
-			}
-			vals = append(vals, val)
-		}
-	}
-
-	sort.Ints(vals)
-
-	return fmt.Sprint(vals[0]), nil
+    return "", nil
 }
 
 type spanChecker struct {
