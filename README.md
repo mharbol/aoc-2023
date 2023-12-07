@@ -55,3 +55,6 @@ The left side if ceilinged and the right side is floored to get the wins from fr
 Not too bad of a day.
 Classifying the hands in part two was a little bit of a spaghetti mashup of `if` statements, but it all was easy to make and follow.
 Got comfortable with the `sort.Slice()` function which made ranking hands really easy once the comparison function was working.
+
+### [Day 08](solution/days/day08.go)
+TBD
