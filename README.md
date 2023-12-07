@@ -47,5 +47,5 @@ Still working on part two. This was a rough one.
 For part one I was able to just loop through all the possible races since the numbers were low enough.
 For part two I decided to use the quadratic formula.
 Given a time $t$ and record distance $d$, I am looking for the roots of $(t-d)x-d=0$.
-Using the quadratic formula, the roots are $$r={t \pm \sqrt{t^2+4d}} \over 2$$.
+Using the quadratic formula, the roots are $$r={t \pm \sqrt{t^2+4d} \over 2}$$.
 The left side if ceilinged and the right side is floored to get the wins from fractions.
