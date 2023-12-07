@@ -41,11 +41,15 @@ I made a slice with all the counts of cards to easily add to and when it was tim
 played card's count. Not sure how graceful that is but it works.
 
 ### [Day 05](solution/days/day05.go)
-Still working on part two. This was a rough one.
+Had to redline my CPU for 20 minutes or so to make this work.
+Eventually will fix it and make an actual algorithm.
 
 ### [Day 06](solution/days/day06.go)
 For part one I was able to just loop through all the possible races since the numbers were low enough.
 For part two I decided to use the quadratic formula.
 Given a time $t$ and record distance $d$, I am looking for the roots of $(t-d)x-d=0$.
-Using the quadratic formula, the roots are $$r={t \pm \sqrt{t^2+4d} \over 2}$$.
+Using the quadratic formula, the roots are $$r={t \pm \sqrt{t^2+4d} \over 2}$$
 The left side if ceilinged and the right side is floored to get the wins from fractions.
+
+### [Day 07] (solution/days/day07.go)
+TBD

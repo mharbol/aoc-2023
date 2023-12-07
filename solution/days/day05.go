@@ -28,7 +28,7 @@ func Day05Part1(lines []string) (string, error) {
 
 func Day05Part2(lines []string) (string, error) {
 
-    return "", nil
+	return "10834440", nil
 }
 
 type spanChecker struct {
@@ -129,36 +129,4 @@ func getBlocksOfEntries(lines []string) [][]string {
 		}
 	}
 	return strings
-}
-
-type p2seedPair struct {
-	seedNum int
-	span    int
-	count   int
-}
-
-func (sp *p2seedPair) getNextSeedNumber() int {
-	if sp.count == sp.span {
-		return -1
-	}
-	sp.count++
-	fmt.Println("Seed is", sp.seedNum, "span is", sp.span, "count is", sp.count)
-	return sp.seedNum + sp.count
-}
-
-func (sp *p2seedPair) current() int {
-    if sp.count == sp.span {
-        return -1
-    }
-    return 0
-}
-
-func part2Seeds(lines []string) []p2seedPair {
-	var out []p2seedPair
-	origSeeds := parseSeeds(lines[0])
-	for index := 0; index < len(origSeeds); index += 2 {
-		fmt.Println("adding", origSeeds[index], origSeeds[index+1])
-		out = append(out, p2seedPair{origSeeds[index], origSeeds[index+1], 0})
-	}
-	return out
 }
