@@ -51,5 +51,5 @@ Given a time $t$ and record distance $d$, I am looking for the roots of $(t-d)x-
 Using the quadratic formula, the roots are $$r={t \pm \sqrt{t^2+4d} \over 2}$$
 The left side if ceilinged and the right side is floored to get the wins from fractions.
 
-### [Day 07] (solution/days/day07.go)
+### [Day 07](solution/days/day07.go)
 TBD
