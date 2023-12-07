@@ -5,6 +5,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 func Day05Part1(lines []string) (string, error) {
@@ -28,7 +29,31 @@ func Day05Part1(lines []string) (string, error) {
 
 func Day05Part2(lines []string) (string, error) {
 
-    return "", nil
+	seedSpans := part2Seeds(lines)
+	_, mappers := parsePart1(lines)
+	minimum := 0x7FFFFFFF
+
+	ch := make(chan int)
+	var wg sync.WaitGroup
+
+	for _, seedSpan := range seedSpans {
+		wg.Add(1)
+		go pathSeeds(seedSpan, mappers, ch, &wg)
+	}
+
+	go func() {
+		defer close(ch)
+		wg.Wait()
+	}()
+
+	for nextNum := range ch {
+		if nextNum < minimum {
+			minimum = nextNum
+            fmt.Println("New min:", minimum)
+		}
+	}
+
+	return fmt.Sprint(minimum), nil
 }
 
 type spanChecker struct {
@@ -142,15 +167,7 @@ func (sp *p2seedPair) getNextSeedNumber() int {
 		return -1
 	}
 	sp.count++
-	fmt.Println("Seed is", sp.seedNum, "span is", sp.span, "count is", sp.count)
 	return sp.seedNum + sp.count
-}
-
-func (sp *p2seedPair) current() int {
-    if sp.count == sp.span {
-        return -1
-    }
-    return 0
 }
 
 func part2Seeds(lines []string) []p2seedPair {
@@ -161,4 +178,18 @@ func part2Seeds(lines []string) []p2seedPair {
 		out = append(out, p2seedPair{origSeeds[index], origSeeds[index+1], 0})
 	}
 	return out
+}
+
+func pathSeeds(pair p2seedPair, mappers []*resourceMapper, ch chan<- int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for {
+        seedNumber := pair.getNextSeedNumber()
+        if seedNumber == -1 {
+            break
+        }
+		for _, mapper := range mappers {
+			seedNumber = mapper.getDesination(seedNumber)
+		}
+		ch <- seedNumber
+	}
 }
