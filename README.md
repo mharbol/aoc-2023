@@ -57,4 +57,10 @@ Classifying the hands in part two was a little bit of a spaghetti mashup of `if`
 Got comfortable with the `sort.Slice()` function which made ranking hands really easy once the comparison function was working.
 
 ### [Day 08](solution/days/day08.go)
-TBD
+This was a fun and math-y one.
+For part one it was nothing extreme, just some digraph traversal.
+Part two was too big to do with a simple traversal.
+By happenstance, I found that the first `XXZ` cycle came right away.
+All I had to do was find the cycles, normalize them (with the `gcd`), and compose them together along with the gcd.
+I'm happy I found it but I kinda want to go back and make the full implementation more sound and not tied to how
+the problem was laid out.
