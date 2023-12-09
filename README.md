@@ -69,3 +69,6 @@ the problem was laid out.
 Today looked rough but wasn't too bad.
 Part one was made a lot easier realizing the solution was just the sum of the end values.
 Part two, just had to work bottom to top up the front of the diff slices and keep track of the previous difference.
+
+### [Day 10](solution/days/day10.go)
+TBD
