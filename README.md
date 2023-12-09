@@ -61,6 +61,11 @@ This was a fun and math-y one.
 For part one it was nothing extreme, just some digraph traversal.
 Part two was too big to do with a simple traversal.
 By happenstance, I found that the first `XXZ` cycle came right away.
-All I had to do was find the cycles, normalize them (with the `gcd`), and compose them together along with the gcd.
+All I had to do was find the cycles, normalize them (with the `gcd`), and compose them together along with the gcd to get the LCM.
 I'm happy I found it but I kinda want to go back and make the full implementation more sound and not tied to how
 the problem was laid out.
+
+### [Day 09](solution/days/day09.go)
+Today looked rough but wasn't too bad.
+Part one was made a lot easier realizing the solution was just the sum of the end values.
+Part two, just had to work bottom to top up the front of the diff slices and keep track of the previous difference.
