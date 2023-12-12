@@ -73,3 +73,6 @@ Part two, just had to work bottom to top up the front of the diff slices and kee
 
 ### [Day 10](solution/days/day10.go)
 TBD
+
+### [Day 11](solution/days/day11.go)
+TBD
