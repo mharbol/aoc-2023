@@ -72,7 +72,11 @@ Part one was made a lot easier realizing the solution was just the sum of the en
 Part two, just had to work bottom to top up the front of the diff slices and keep track of the previous difference.
 
 ### [Day 10](solution/days/day10.go)
-TBD
+There probably was an easier way to traverse the pipe system for part one, but I made it work with a huge `switch`.
+Still wrapping my head around a way to make part two work or even detect contained tiles.
 
 ### [Day 11](solution/days/day11.go)
-TBD
+Lot of fun with this one.
+For part one it was easy enough to just add extra rows and columns for the blank spots.
+For part two, had to get a bit more creative and used my hacky set to see all the expansion points where I would have to
+add distance on the backend.
