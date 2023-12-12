@@ -20,7 +20,20 @@ func Day11Part1(lines []string) (string, error) {
 
 func Day11Part2(lines []string) (string, error) {
 
-	return "", nil
+	acc := 0
+
+	const EXPANSION = 1000000
+
+	universe, blankRows, blankCols := observeUniverse(lines)
+	galaxies := getGalaxies(universe)
+
+	for x := 0; x < len(galaxies)-1; x++ {
+		for y := x + 1; y < len(galaxies); y++ {
+			acc += expandedDistance(galaxies[x], galaxies[y], blankRows, blankCols, EXPANSION)
+		}
+	}
+
+	return fmt.Sprint(acc), nil
 }
 
 type galaxyCoord struct {
@@ -88,4 +101,76 @@ func getGalaxies(universe [][]byte) []galaxyCoord {
 
 func manhattanDistance(g1, g2 galaxyCoord) int {
 	return int(i32Abs(int32(g1.col)-int32(g2.col))) + int(i32Abs(int32(g1.row)-int32(g2.row)))
+}
+
+func observeUniverse(lines []string) ([][]byte, map[int]bool, map[int]bool) {
+
+	blankCols := make(map[int]bool)
+	blankRows := make(map[int]bool)
+	var universe [][]byte
+
+	for col := 0; col < len(lines[0]); col++ {
+		allDots := true
+		for row := 0; row < len(lines); row++ {
+			if lines[row][col] == '#' {
+				allDots = false
+				break
+			}
+		}
+		if allDots {
+			blankCols[col] = true
+		}
+	}
+
+	for row := 0; row < len(lines); row++ {
+		allDots := true
+		var line []byte
+		for col := 0; col < len(lines[row]); col++ {
+			if lines[row][col] != '.' {
+				allDots = false
+			}
+			line = append(line, lines[row][col])
+		}
+		universe = append(universe, line)
+		if allDots {
+			blankRows[row] = true
+		}
+	}
+
+	return universe, blankRows, blankCols
+}
+
+func expandedDistance(x, y galaxyCoord, blankRows, blankCols map[int]bool, exp int) int {
+
+	var rowTop, rowBot, colLeft, colRight int
+
+	if x.row > y.row {
+		rowTop = y.row
+		rowBot = x.row
+	} else {
+		rowTop = x.row
+		rowBot = y.row
+	}
+	if x.col > y.col {
+		colRight = x.col
+		colLeft = y.col
+	} else {
+		colRight = y.col
+		colLeft = x.col
+	}
+
+	expCount := 0
+	for i := rowTop; i < rowBot; i++ {
+		_, ok := blankRows[i]
+		if ok {
+			expCount++
+		}
+	}
+	for i := colLeft; i < colRight; i++ {
+		_, ok := blankCols[i]
+		if ok {
+			expCount++
+		}
+	}
+	return rowBot - rowTop + colRight - colLeft + (exp-1)*expCount
 }
