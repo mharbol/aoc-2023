@@ -80,3 +80,6 @@ Lot of fun with this one.
 For part one it was easy enough to just add extra rows and columns for the blank spots.
 For part two, had to get a bit more creative and used my hacky set to see all the expansion points where I would have to
 add distance on the backend.
+
+### [Day 12](solution/days/day12.go)
+TBD
