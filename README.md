@@ -82,4 +82,9 @@ For part two, had to get a bit more creative and used my hacky set to see all th
 add distance on the backend.
 
 ### [Day 12](solution/days/day12.go)
-TBD
+I did all sorts of silly things on this one before finally getting a good answer.
+The secret was caching my answer for the recursion which greatly sped up my recursive algorithm.
+I did have to take **extensive** advice from
+[this](https://www.reddit.com/r/adventofcode/comments/18hbbxe/2023_day_12python_stepbystep_tutorial_with_bonus/)
+Reddit post... but that's what it is there for.
+At least I got reps making my own cache.
