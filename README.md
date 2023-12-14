@@ -73,7 +73,9 @@ Part two, just had to work bottom to top up the front of the diff slices and kee
 
 ### [Day 10](solution/days/day10.go)
 There probably was an easier way to traverse the pipe system for part one, but I made it work with a huge `switch`.
-Still wrapping my head around a way to make part two work or even detect contained tiles.
+Did part two by determining that the area inside could be determined using the shoelace area theorem (pretty sure that's what it's called).
+Used the vertices in traversed order to calculate the area.
+I subtracted the half length of pipe from part one (since they contribute to the area too) and got the area of tiles inside the polygon (pipe loop).
 
 ### [Day 11](solution/days/day11.go)
 Lot of fun with this one.

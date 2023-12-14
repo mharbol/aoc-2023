@@ -1,30 +1,39 @@
 package days
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func Day10Part1(lines []string) (string, error) {
 
 	s := findS(lines)
-	fmt.Println(s.row, s.col)
 
-    prev := s
-    curr := coord{row: prev.row + 1, col: prev.col}
+	vertexList = []coord{}
 
-    length := 1
-    for lines[curr.row][curr.col] != 'S' {
-        fmt.Println("curr: ", curr, " prev: ", prev)
-        temp := curr
-        curr = takeStep(curr, prev, lines)
-        prev = temp
-        length++
-    }
+	prev := s
+	curr := coord{row: prev.row + 1, col: prev.col}
 
-	return fmt.Sprint(length / 2 + length % 2), nil
+	length := 1
+	for lines[curr.row][curr.col] != 'S' {
+		temp := curr
+		curr = takeStep(curr, prev, lines)
+		prev = temp
+		length++
+	}
+
+	return fmt.Sprint(length/2 + length%2), nil
 }
 
 func Day10Part2(lines []string) (string, error) {
 
-	return "", nil
+	// traverse and mark pipes
+	p1Ans, _ := Day10Part1(lines)
+	halfLen, _ := strconv.Atoi(p1Ans)
+
+	inside := shoelaceArea(vertexList) - halfLen
+
+	return fmt.Sprint(inside), nil
 }
 
 type coord struct {
@@ -43,68 +52,86 @@ func findS(lines []string) coord {
 	return coord{-1, -1}
 }
 
+var vertexList []coord
+
 func takeStep(currPos, prevPos coord, lines []string) coord {
 
 	switch lines[currPos.row][currPos.col] {
 	case '|':
-		if currPos.row > prevPos.row { // go south
+		if currPos.row > prevPos.row {
 			return goSouth(currPos)
-		} else { // go north
+		} else {
 			return goNorth(currPos)
 		}
 	case '-':
-		if currPos.col > prevPos.col { // go east
+		if currPos.col > prevPos.col {
 			return goEast(currPos)
-		} else { // go west
+		} else {
 			return goWest(currPos)
 		}
 	case 'L':
-		if currPos.row > prevPos.row { // go east
+		vertexList = append(vertexList, currPos)
+		if currPos.row > prevPos.row {
 			return goEast(currPos)
-		} else { // go north
+		} else {
 			return goNorth(currPos)
 		}
 	case 'J':
-		if currPos.row > prevPos.row { // go west
+		vertexList = append(vertexList, currPos)
+		if currPos.row > prevPos.row {
 			return goWest(currPos)
 		} else {
 			return goNorth(currPos)
 		}
-    case '7':
-        if currPos.col > prevPos.col {
-            return goSouth(currPos)
-        } else {
-            return goWest(currPos)
-        }
-    case 'F':
-        if currPos.row < prevPos.row {
-            return goEast(currPos)
-        } else {
-            return goSouth(currPos)
-        }
-    default:
-        fmt.Println("Came to a ", lines[currPos.row][currPos.col], " at ", currPos)
+	case '7':
+		vertexList = append(vertexList, currPos)
+		if currPos.col > prevPos.col {
+			return goSouth(currPos)
+		} else {
+			return goWest(currPos)
+		}
+	case 'F':
+		vertexList = append(vertexList, currPos)
+		if currPos.row < prevPos.row {
+			return goEast(currPos)
+		} else {
+			return goSouth(currPos)
+		}
+	default:
+		fmt.Println("Came to a ", lines[currPos.row][currPos.col], " at ", currPos)
 	}
 
 	return coord{-1, -1}
 }
 
 func goNorth(currPos coord) coord {
-    fmt.Println("go north")
 	return coord{row: currPos.row - 1, col: currPos.col}
 }
 
 func goSouth(currPos coord) coord {
-    fmt.Println("go south")
 	return coord{row: currPos.row + 1, col: currPos.col}
 }
 
 func goEast(currPos coord) coord {
-    fmt.Println("go east")
 	return coord{row: currPos.row, col: currPos.col + 1}
 }
 
 func goWest(currPos coord) coord {
-    fmt.Println("go west")
 	return coord{row: currPos.row, col: currPos.col - 1}
+}
+
+func shoelaceArea(vertices []coord) int {
+	tot := 0
+	length := len(vertices)
+	for i := 0; i < length-1; i++ {
+		tot += vertices[i].col*vertices[i+1].row - vertices[i].row*vertices[i+1].col
+	}
+	tot += vertices[length-1].col*vertices[0].row - vertices[length-1].row*vertices[0].col
+
+	tot /= 2
+	if tot >= 0 {
+		return tot + 1
+	} else {
+		return -tot + 1
+	}
 }

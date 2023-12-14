@@ -9,9 +9,9 @@ import (
 func Day12Part1(lines []string) (string, error) {
 
 	acc := 0
-    
-    // clear the cache
-    cache = make(map[cacheKey]int)
+
+	// clear the cache
+	cache = make(map[cacheKey]int)
 
 	for _, line := range lines {
 		acc += countArrangements(parseDay12(line))
@@ -24,8 +24,8 @@ func Day12Part2(lines []string) (string, error) {
 
 	acc := 0
 
-    // clear the cache
-    cache = make(map[cacheKey]int)
+	// clear the cache
+	cache = make(map[cacheKey]int)
 
 	for _, line := range lines {
 		acc += countArrangements(unfold(parseDay12(line)))
@@ -36,26 +36,26 @@ func Day12Part2(lines []string) (string, error) {
 
 type cacheKey struct {
 	line   string
-	counts string
+	counts string // cannot use slice as part of key
 }
 
 func putCache(line string, counts []int, count int) {
-    val := ""
-    for _, count := range counts {
-        val += fmt.Sprint(count) + " "
-    }
-    key := cacheKey{line: line, counts: val}
-    cache[key] = count
+	val := ""
+	for _, count := range counts {
+		val += fmt.Sprint(count) + " "
+	}
+	key := cacheKey{line: line, counts: val}
+	cache[key] = count
 }
 
 func getCache(line string, counts []int) (int, bool) {
-    val := ""
-    for _, count := range counts {
-        val += fmt.Sprint(count) + " "
-    }
-    key := cacheKey{line: line, counts: val}
-    num, ok := cache[key]
-    return num, ok
+	val := ""
+	for _, count := range counts {
+		val += fmt.Sprint(count) + " "
+	}
+	key := cacheKey{line: line, counts: val}
+	num, ok := cache[key]
+	return num, ok
 }
 
 var cache map[cacheKey]int
@@ -73,27 +73,27 @@ func parseDay12(line string) (string, []int) {
 
 func countArrangements(line string, counts []int) int {
 
-    // check cache
-    if num, ok := getCache(line, counts); ok {
-        return num
-    }
+	// check cache
+	if num, ok := getCache(line, counts); ok {
+		return num
+	}
 
 	// base case, out of counts
 	if len(counts) == 0 {
 		// no more hashes
 		if strings.Index(line, "#") == -1 {
-            putCache(line, counts, 1)
+			putCache(line, counts, 1)
 			return 1
 		} else {
 			// at least one more hash
-            putCache(line, counts, 0)
+			putCache(line, counts, 0)
 			return 0
 		}
 	}
 
 	// base case, no more characters but still counts
 	if len(line) == 0 {
-        putCache(line, counts, 0)
+		putCache(line, counts, 0)
 		return 0
 	}
 
@@ -112,14 +112,14 @@ func countArrangements(line string, counts []int) int {
 		// if the first item is a hash, then the next n chars have
 		// to be treated as hashes
 		if len(line) < nextCount {
-            putCache(line, counts, 0)
+			putCache(line, counts, 0)
 			return 0
 		}
 		chunk := line[:nextCount]
 		chunk = strings.ReplaceAll(chunk, "?", "#")
 		// if not all hashes or too short, then leave
 		if strings.Index(chunk, ".") != -1 {
-            putCache(line, counts, 0)
+			putCache(line, counts, 0)
 			return 0
 		}
 
@@ -127,10 +127,10 @@ func countArrangements(line string, counts []int) int {
 		if len(line) == nextCount {
 			// valid
 			if len(counts) == 1 {
-                putCache(line, counts, 1)
+				putCache(line, counts, 1)
 				return 1
 			} else {
-                putCache(line, counts, 0)
+				putCache(line, counts, 0)
 				return 0
 			}
 		}
@@ -151,15 +151,15 @@ func countArrangements(line string, counts []int) int {
 	} else {
 		out = processDot() + processHash()
 	}
-    putCache(line, counts, out)
+	putCache(line, counts, out)
 	return out
 }
 
 func unfold(line string, counts []int) (string, []int) {
-    var outCounts []int
-    for i := 0; i < len(counts) * 5; i++ {
-        outCounts = append(outCounts, counts[i % len(counts)])
-    }
+	var outCounts []int
+	for i := 0; i < len(counts)*5; i++ {
+		outCounts = append(outCounts, counts[i%len(counts)])
+	}
 
-    return line + "?" + line + "?" + line + "?" + line + "?" + line, outCounts
+	return line + "?" + line + "?" + line + "?" + line + "?" + line, outCounts
 }
