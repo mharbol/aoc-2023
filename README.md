@@ -2,6 +2,8 @@
 Doing the [Advent of Code](https://adventofcode.com/) for [2023](https://adventofcode.com/2023/) in [Go\[lang\]](https://go.dev/).
 Probably none of these solutions are optimal... FYI.
 
+Even though this ended a little early for me, please check out the [retrospective](#Retrospective) as I try to complete it.
+
 I went a little overboard with the interfaces and methods; I'm coming from the Java world and can't shake it just yet.
 
 This project only uses the Go standard library so I am forced to use the language as (I guess) the designers intended.
@@ -90,3 +92,11 @@ I did have to take **extensive** advice from
 [this](https://www.reddit.com/r/adventofcode/comments/18hbbxe/2023_day_12python_stepbystep_tutorial_with_bonus/)
 Reddit post... but that's what it is there for.
 At least I got reps making my own cache.
+
+## Retrospective
+I like the multithreading, it is very easy to kick off if you are smart about it.
+Errors as return types rather than Exceptions coming up from somewhere are a plus.
+Visibility by function/method name capitalization is terrible.
+
+Done diferently, I would have made each day its own `interface` to avoid weird naming as the days progressed
+(maybe a refactor should be in the works).
