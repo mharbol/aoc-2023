@@ -1,6 +1,6 @@
 package span
 
-import "fmt"
+import "sort"
 
 // represents a range of numbers from `start` to `end` (non-inclusively)
 type Span struct {
@@ -81,16 +81,51 @@ func (s *Span) Venn(o *Span) (*Span, []*Span, []*Span) {
 	return common, self, other
 }
 
-func (s *Span) String() string {
-	return fmt.Sprintf("{start: %d, end: %d}", s.start, s.end)
-}
-
 // used to sort Span structs
 // first compares based on starting value
 // if starting value is the same then go off of ending value
-func (s *Span) compareTo(o *Span) int {
+func (s *Span) CompareTo(o *Span) int {
 	if s.start != o.start {
 		return s.start - o.start
 	}
 	return s.end - o.end
+}
+
+func (s *Span) IsIntInSpan(num int) bool {
+	return num >= s.start && num < s.end
+}
+
+func (s *Span) Start() int {
+	return s.start
+}
+
+func (s *Span) End() int {
+	return s.end
+}
+
+func Combine(in []*Span) []*Span {
+
+	var out []*Span
+
+	if in == nil || len(in) == 0 {
+		return out
+	}
+
+	sort.Slice(in, func(i, j int) bool { return in[i].CompareTo(in[j]) < 0 })
+
+	var workingSpan = in[0]
+
+	for idx := 1; idx < len(in); idx++ {
+		if workingSpan.end >= in[idx].start {
+			if in[idx].end > workingSpan.end {
+				workingSpan = New(workingSpan.start, in[idx].end)
+			}
+		} else {
+			out = append(out, workingSpan)
+			workingSpan = in[idx]
+		}
+	}
+
+	out = append(out, workingSpan)
+	return out
 }

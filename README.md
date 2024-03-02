@@ -43,9 +43,11 @@ I made a slice with all the counts of cards to easily add to and when it was tim
 played card's count. Not sure how graceful that is but it works.
 
 ### [Day 05](solution/days/day05.go)
-Had to [redline my CPU](https://github.com/mharbol/aoc-2023/blob/8f8400ef44915a283d7313601b4968b1a701ad67/solution/days/day05.go#L30)
-for 20 minutes or so to make this work.
-Eventually will fix it and make an actual algorithm.
+Went a little overboard on the OOP stuff for this one; I got frustrated with it and had to incrementally solve it over the course of a week.
+Made an over-engineered [`Span`](util/span/span.go) struct to find the intersections and combine the mapped spans at every iteration.
+The first time I solved this, I had to [redline my CPU](https://github.com/mharbol/aoc-2023/blob/8f8400ef44915a283d7313601b4968b1a701ad67/solution/days/day05.go#L30)
+for 20 minutes or so to make it work.
+After the new solution, it averaged less than 250ms.
 
 ### [Day 06](solution/days/day06.go)
 For part one I was able to just loop through all the possible races since the numbers were low enough.
