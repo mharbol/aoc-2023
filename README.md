@@ -95,6 +95,14 @@ I did have to take **extensive** advice from
 Reddit post... but that's what it is there for.
 At least I got reps making my own cache.
 
+### [Day 13](solution/days/day13.go)
+This was a really fun one to work on.
+Being clever in part one paid off for part two.
+I represented the lines of `#` and `.` as the bits `1` and `0` respectively.
+For part one, this made the comparison a lot quicker and easy since they were just unsigned ints.
+This paid off in part two where all I needed to do was let the comparison go through if the lines were equal or `xor`ed to a power of two (one smudged bit).
+From there, I knew it was the line of reflection if there was exatly one power of two for that comparison.
+
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.
 Errors as return types rather than Exceptions coming up from somewhere are a plus.
