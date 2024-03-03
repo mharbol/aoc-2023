@@ -103,6 +103,13 @@ For part one, this made the comparison a lot quicker and easy since they were ju
 This paid off in part two where all I needed to do was let the comparison go through if the lines were equal or `xor`ed to a power of two (one smudged bit).
 From there, I knew it was the line of reflection if there was exatly one power of two for that comparison.
 
+### [Day 14](solution/days/day14.go)
+Making the stones move around the `platform` reminded me of the Jump Game problems in LeetCode.
+Part one was easy enough to move all the rocks off of a given tilt and then sum the weights (I knew all four directions was coming).
+For part two I knew the platform would eventully come into a cyclic state.
+I used the step it reached that state and the step it started to determine the period.
+The remaining steps to go mod the period is the number of steps to go from the current state to the end state without completing one billion iterations.
+
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.
 Errors as return types rather than Exceptions coming up from somewhere are a plus.
