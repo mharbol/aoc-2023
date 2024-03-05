@@ -118,6 +118,12 @@ would have made things worlds easier to make boxes which keep track of lenses in
 Alas, the Go standard library does not have such a structure \[to my knowledge\] so I had to hack it with my own `lensBox`.
 Worked perfectly on the first try.
 
+### [Day 16](solution/days/day16.go)
+Had a lot of fun on this one.
+A few minor confusions on state made it a little challenging but once I got past them it was smooth sailing.
+Kept a map to track if a similar beam had passed over a tile before and avoid needless processing and loops.
+For part two I spent a longer time than I should have debugging just to realize I needed four distinct copies of the mirror matrix.
+
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.
 Errors as return types rather than Exceptions coming up from somewhere are a plus.
