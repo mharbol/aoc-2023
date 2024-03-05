@@ -111,9 +111,12 @@ I used the step it reached that state and the step it started to determine the p
 The remaining steps to go mod the period is the number of steps to go from the current state to the end state without completing one billion iterations.
 
 ### [Day 15](solution/days/day15.go)
+This was another really fun one; the real challenge was wrapping my head around the box insertion rules after a first read.
+Reindeer hash was a good time but had to get creative with my `map`s for the second bit.
 For part two, an object like Java's [`LinkedHashMap<>`](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html)
 would have made things worlds easier to make boxes which keep track of lenses in order with their labels as keys and focal lengths as values.
 Alas, the Go standard library does not have such a structure \[to my knowledge\] so I had to hack it with my own `lensBox`.
+Worked perfectly on the first try.
 
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.

@@ -2,6 +2,7 @@ package days
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -20,7 +21,31 @@ func Day15Part1(lines []string) (string, error) {
 
 func Day15Part2(lines []string) (string, error) {
 
-	return "", nil
+	entries := splitLineOnCommas(lines[0])
+
+	var boxes []*lensBox
+	for i := 0; i < 256; i++ {
+		boxes = append(boxes, newLensBox(i+1))
+	}
+
+	for _, entry := range entries {
+		if strings.Contains(entry, "-") {
+			label := entry[:len(entry)-1]
+			boxNumber := reindeerHash(label)
+			boxes[boxNumber].remove(label)
+		} else {
+			currLens := newLensFromString(entry)
+			boxes[currLens.boxNumber()].replaceOrInsert(currLens)
+		}
+	}
+
+    tot := 0
+    
+    for _, box := range boxes {
+        tot += box.totalBox()
+    }
+
+	return fmt.Sprint(tot), nil
 }
 
 func reindeerHash(str string) int {
@@ -47,6 +72,13 @@ func newLens(label string, focalLen int) *lens {
 	return &lens{label: label, focalLen: focalLen}
 }
 
+// for strings with equals
+func newLensFromString(str string) *lens {
+	strs := strings.Split(str, "=")
+	focalLen, _ := strconv.Atoi(strs[1])
+	return newLens(strs[0], focalLen)
+}
+
 func (l *lens) String() string {
 	return fmt.Sprintf("[%s %d]", l.label, l.focalLen)
 }
@@ -67,6 +99,13 @@ type lensBox struct {
 	// a keeper for the next available "index"
 	// at the end the boxes will be condensed so there is no need to worry about empty space
 	nextIndex int
+
+	// the value of the box when summing totals
+	boxVal int
+}
+
+func (lb *lensBox) String() string {
+	return fmt.Sprint(lb.asSlice())
 }
 
 // removes a lens via its label from this lensBox (provided it exists)
@@ -118,6 +157,14 @@ func (lb *lensBox) getInternalValue() int {
 	return prod
 }
 
-func newLensBox() *lensBox {
-	return &lensBox{lenses: make(map[int]*lens), lables: make(map[string]int), nextIndex: 0}
+func (lb *lensBox) totalBox() int {
+	tot := 0
+	for idx, currLens := range lb.asSlice() {
+		tot += lb.boxVal * (idx + 1) * currLens.focalLen
+	}
+	return tot
+}
+
+func newLensBox(boxVal int) *lensBox {
+	return &lensBox{lenses: make(map[int]*lens), lables: make(map[string]int), nextIndex: 0, boxVal: boxVal}
 }
