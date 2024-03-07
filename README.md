@@ -124,6 +124,9 @@ A few minor confusions on state made it a little challenging but once I got past
 Kept a map to track if a similar beam had passed over a tile before and avoid needless processing and loops.
 For part two I spent a longer time than I should have debugging just to realize I needed four distinct copies of the mirror matrix.
 
+### [Day 17](solution/days/day17.go)
+TBD
+
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.
 Errors as return types rather than Exceptions coming up from somewhere are a plus.
