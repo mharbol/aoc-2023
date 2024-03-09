@@ -239,7 +239,7 @@ func (ltm *lavaTraveralMatrix) walkPosition(position *lavaTraveralPosition, dir 
 func (ltm *lavaTraveralMatrix) walkUltraCrucible(position *lavaTraveralPosition, dir walkDirection) {
 
 	// If I have dealt with this position before in a more efficient way...
-	currPos := lavaCoordinate{row: position.row, col: position.col, dir: position.lastDirection, steps: position.stepsTakenInDir}
+	currPos := lavaCoordinate{row: position.row, col: position.col, dir: position.lastDirection, steps: 0}
 	heatLoss, ok := ltm.visited[currPos]
 	if ok {
 		if heatLoss < position.heatLoss {
