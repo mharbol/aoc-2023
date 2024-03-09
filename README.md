@@ -129,6 +129,12 @@ To solve this I made a depth first search which would take into account which po
 This proved very effective in part one but a little slow in part two (takes about 6-7 seconds).
 Will have to go back and fix this error soon.
 
+### [Day 18](solution/days/day18.go)
+Today brought back the [shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula) to great success.
+For part two I realized go has a builtin `strconv.ParseInt()` function which was really handy to parse in the hex direction.
+Using regular `int` for part one made me repeat most of my logic for part two.
+Cleaned it up afterwards so I could reuse a lot of the same logic.
+
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.
 Errors as return types rather than Exceptions coming up from somewhere are a plus.

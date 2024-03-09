@@ -21,4 +21,5 @@ var allSolutions = map[uint8]*solFuncTuple{
 	15: {days.Day15Part1, days.Day15Part2},
 	16: {days.Day16Part1, days.Day16Part2},
 	17: {days.Day17Part1, days.Day17Part2},
+	18: {days.Day18Part1, days.Day18Part2},
 }
