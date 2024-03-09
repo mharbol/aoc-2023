@@ -125,7 +125,9 @@ Kept a map to track if a similar beam had passed over a tile before and avoid ne
 For part two I spent a longer time than I should have debugging just to realize I needed four distinct copies of the mirror matrix.
 
 ### [Day 17](solution/days/day17.go)
-TBD
+To solve this I made a depth first search which would take into account which positions were already visited but also at what step and direction.
+This proved very effective in part one but a little slow in part two (took about 50 seconds to solve).
+Will have to go back and fix this error soon.
 
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.
