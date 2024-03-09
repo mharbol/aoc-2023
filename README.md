@@ -126,7 +126,7 @@ For part two I spent a longer time than I should have debugging just to realize 
 
 ### [Day 17](solution/days/day17.go)
 To solve this I made a depth first search which would take into account which positions were already visited but also at what step and direction.
-This proved very effective in part one but a little slow in part two (took about 50 seconds to solve).
+This proved very effective in part one but a little slow in part two (takes about 6-7 seconds).
 Will have to go back and fix this error soon.
 
 ## Retrospective
