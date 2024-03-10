@@ -134,8 +134,8 @@ func isSmudgeReflectionIndex(idx int, arr []uint32) bool {
 		if pow2 {
 			powerOfTwoCount += 1
 		}
-        left--
-        right++
+		left--
+		right++
 	}
 
 	return powerOfTwoCount == 1
@@ -143,12 +143,5 @@ func isSmudgeReflectionIndex(idx int, arr []uint32) bool {
 }
 
 func isPowerOf2(num uint32) bool {
-	var check uint32 = 1
-	for check <= num {
-		if check == num {
-			return true
-		}
-		check <<= 1
-	}
-	return false
+	return num != 0 && num&(num-1) == 0
 }

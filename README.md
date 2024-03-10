@@ -135,6 +135,17 @@ For part two I realized go has a builtin `strconv.ParseInt()` function which was
 Using regular `int` for part one made me repeat most of my logic for part two which required `int64` for accuracy.
 Cleaned it up afterwards so I could reuse a lot of the same logic.
 
+### [Day 19](solution/days/day19.go)
+Took a bit of a break before starting this one.
+The first part was pretty easy and just had to make some good parsers.
+Breaking up part two into a few days (weeks) saw the comeback of a lot of structs, methods, and functions to keep the progress for each day in scope.
+Originally was going to add to the `Span` struct from day 05 but ended up going with my own inclusive span.
+Each part represented a range of parts that might pass the check or fall through to the next job.
+Progressively passed spanned parts through jobs and workflows until they were all accepted or rejected.
+Definitely rethinking my idea to pass nearly everything as a reference, sometimes a small struct by value *might* end up being better than making
+`copy()` methods all over the place.
+We'll see if that blends into newer days.
+
 ## Retrospective
 I like the multithreading, it is very easy to kick off if you are smart about it.
 Errors as return types rather than Exceptions coming up from somewhere are a plus.
