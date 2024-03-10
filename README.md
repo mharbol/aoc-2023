@@ -125,14 +125,14 @@ Kept a map to track if a similar beam had passed over a tile before and avoid ne
 For part two I spent a longer time than I should have debugging just to realize I needed four distinct copies of the mirror matrix.
 
 ### [Day 17](solution/days/day17.go)
-To solve this I made a depth first search which would take into account which positions were already visited but also at what step and direction.
+To solve this I made a breadth first search which would take into account which positions were already visited but also at what step and direction.
 This proved very effective in part one but a little slow in part two (takes about 6-7 seconds).
 Will have to go back and fix this error soon.
 
 ### [Day 18](solution/days/day18.go)
 Today brought back the [shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula) to great success.
 For part two I realized go has a builtin `strconv.ParseInt()` function which was really handy to parse in the hex direction.
-Using regular `int` for part one made me repeat most of my logic for part two.
+Using regular `int` for part one made me repeat most of my logic for part two which required `int64` for accuracy.
 Cleaned it up afterwards so I could reuse a lot of the same logic.
 
 ## Retrospective
