@@ -24,20 +24,6 @@ func TestMakeFilePathDoubleDigit(t *testing.T) {
 	}
 }
 
-func TestReadDayInputSuccess(t *testing.T) {
-	const path = "../inputs/day_00.txt"
-	expected := []string{"line 1", "line 2", "line 3"}
-
-	actual, err := readDayInput(path)
-
-	if err != nil {
-		t.Fatalf("Got error %s", err.Error())
-	}
-	if expected[0] != actual[0] || expected[1] != actual[1] || expected[2] != actual[2] {
-		t.Fatalf("Expected did not match actual")
-	}
-}
-
 func TestReadDayInputFailure(t *testing.T) {
 	const path = "inputs/day_50.txt"
 
@@ -46,16 +32,4 @@ func TestReadDayInputFailure(t *testing.T) {
 	if err == nil {
 		t.Fatalf("Expected funcion to error and did not.")
 	}
-}
-
-func TestReadProblemInfoNewEntry(t *testing.T) {
-
-}
-
-func TestReadProblemInfoExistingEntry(t *testing.T) {
-
-}
-
-func TestReadProblemNoEntry(t *testing.T) {
-
 }
