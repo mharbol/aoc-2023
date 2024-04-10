@@ -2,7 +2,7 @@
 Doing the [Advent of Code](https://adventofcode.com/) for [2023](https://adventofcode.com/2023/) in [Go\[lang\]](https://go.dev/).
 Probably none of these solutions are optimal... FYI.
 
-Even though this ended a little early for me, please check out the [retrospective](#Retrospective) as I try to complete it.
+Even though this ended a little early for me, please check out the [retrospective](RETROSPECTIVE.md) as I try to complete it.
 
 I went a little overboard with the interfaces and methods; I'm coming from the Java world and can't shake it just yet.
 
@@ -145,11 +145,3 @@ Progressively passed spanned parts through jobs and workflows until they were al
 Definitely rethinking my idea to pass nearly everything as a reference, sometimes a small struct by value *might* end up being better than making
 `copy()` methods all over the place.
 We'll see if that blends into newer days.
-
-## Retrospective
-I like the multithreading, it is very easy to kick off if you are smart about it.
-Errors as return types rather than Exceptions coming up from somewhere are a plus.
-Visibility by function/method name capitalization is terrible.
-
-Done diferently, I would have made each day its own `interface` to avoid weird naming as the days progressed
-(maybe a refactor should be in the works).
