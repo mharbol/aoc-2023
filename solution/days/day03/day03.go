@@ -1,8 +1,8 @@
-package days
+package day03
 
 import "fmt"
 
-func Day03Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	acc := 0
 
@@ -24,10 +24,10 @@ func Day03Part1(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day03Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	acc := 0
 
@@ -59,7 +59,7 @@ func Day03Part2(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
 func isDigit(char byte) bool {

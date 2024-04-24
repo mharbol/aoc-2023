@@ -1,8 +1,8 @@
-package days
+package day11
 
 import "fmt"
 
-func Day11Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	acc := 0
 
@@ -15,10 +15,10 @@ func Day11Part1(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day11Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	acc := 0
 
@@ -33,7 +33,7 @@ func Day11Part2(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
 type galaxyCoord struct {

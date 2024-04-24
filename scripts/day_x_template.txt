@@ -1,11 +1,11 @@
-package days
+package DAY
 
-func PART1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
-	return "", nil
+	return ""
 }
 
-func PART2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
-	return "", nil
+	return ""
 }

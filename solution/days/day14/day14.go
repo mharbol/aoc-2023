@@ -1,16 +1,16 @@
-package days
+package day14
 
 import "fmt"
 
-func Day14Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	plat := linesToPlatform(lines)
 	plat.tiltNorth()
 
-	return fmt.Sprint(plat.sumLoad()), nil
+	return fmt.Sprint(plat.sumLoad())
 }
 
-func Day14Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	plat := linesToPlatform(lines)
 
@@ -18,8 +18,8 @@ func Day14Part2(lines []string) (string, error) {
 	valsAtStep := make(map[string]int)
 
 	step := 0
-    var cycleStart int
-    
+	var cycleStart int
+
 	valsAtStep[plat.String()] = step
 	for {
 		step++
@@ -29,21 +29,21 @@ func Day14Part2(lines []string) (string, error) {
 		if !ok {
 			valsAtStep[key] = step
 		} else {
-            // once here, we have hit a cycle in the platform states
-            cycleStart = num
+			// once here, we have hit a cycle in the platform states
+			cycleStart = num
 			break
 		}
 	}
 
-    cyclesToCompleteOnceInCycle := 1_000_000_000 - cycleStart
-    cyclicPeriod := step - cycleStart
-    remainingSteps := cyclesToCompleteOnceInCycle % cyclicPeriod
+	cyclesToCompleteOnceInCycle := 1_000_000_000 - cycleStart
+	cyclicPeriod := step - cycleStart
+	remainingSteps := cyclesToCompleteOnceInCycle % cyclicPeriod
 
-    for i := 0; i < remainingSteps; i++ {
-        plat.cycle()
-    }
+	for i := 0; i < remainingSteps; i++ {
+		plat.cycle()
+	}
 
-	return fmt.Sprint(plat.sumLoad()), nil
+	return fmt.Sprint(plat.sumLoad())
 }
 
 const (

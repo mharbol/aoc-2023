@@ -1,4 +1,4 @@
-package days
+package day04
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Day04Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	acc := 0
 
@@ -15,10 +15,10 @@ func Day04Part1(lines []string) (string, error) {
 		acc += scoreWins(numWins)
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day04Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	acc := 0
 	// defaults to all 0's
@@ -34,14 +34,14 @@ func Day04Part2(lines []string) (string, error) {
 
 		// loop down the slice numMatches times adding the number of
 		// cards we had for this game
-        numCardsPerGame := countCards[gameNumber]
+		numCardsPerGame := countCards[gameNumber]
 
 		for index := gameNumber + 1; index < len(lines) && index < gameNumber+numMatches+1; index++ {
-            countCards[index] += numCardsPerGame
+			countCards[index] += numCardsPerGame
 		}
-        acc += numCardsPerGame
+		acc += numCardsPerGame
 	}
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
 func countWins(line string) int {

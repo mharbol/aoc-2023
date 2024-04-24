@@ -1,18 +1,18 @@
-package days
+package day16
 
 import (
 	"fmt"
 	"strings"
 )
 
-func Day16Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	matrix := newMirrorMatrixFromStringSlice(lines)
 
-	return fmt.Sprint(matrix.energyForInitialBeam(newBeam(0, 0, EAST))), nil
+	return fmt.Sprint(matrix.energyForInitialBeam(newBeam(0, 0, EAST)))
 }
 
-func Day16Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	baseMatrix := newMirrorMatrixFromStringSlice(lines)
 
@@ -24,9 +24,9 @@ func Day16Part2(lines []string) (string, error) {
 	for startRow := 0; startRow < numRows; startRow++ {
 
 		matrixEast := baseMatrix.shallowCopyForPart2()
-        energyEast := matrixEast.energyForInitialBeam(newBeam(startRow, 0, EAST))
+		energyEast := matrixEast.energyForInitialBeam(newBeam(startRow, 0, EAST))
 
-        matrixWest := baseMatrix.shallowCopyForPart2()
+		matrixWest := baseMatrix.shallowCopyForPart2()
 		energyWest := matrixWest.energyForInitialBeam(newBeam(startRow, numCols-1, WEST))
 
 		maxNrg := max(energyEast, energyWest)
@@ -37,10 +37,10 @@ func Day16Part2(lines []string) (string, error) {
 
 	for startCol := 0; startCol < numCols; startCol++ {
 
-        matrixSouth := baseMatrix.shallowCopyForPart2()
+		matrixSouth := baseMatrix.shallowCopyForPart2()
 		energySouth := matrixSouth.energyForInitialBeam(newBeam(0, startCol, SOUTH))
 
-        matrixNorth := baseMatrix.shallowCopyForPart2()
+		matrixNorth := baseMatrix.shallowCopyForPart2()
 		energyNorth := matrixNorth.energyForInitialBeam(newBeam(numRows-1, startCol, NORTH))
 
 		maxNrg := max(energyNorth, energySouth)
@@ -49,7 +49,7 @@ func Day16Part2(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(maxEnergy), nil
+	return fmt.Sprint(maxEnergy)
 }
 
 type direction int

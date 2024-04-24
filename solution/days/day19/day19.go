@@ -1,4 +1,4 @@
-package days
+package day19
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func Day19Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	parts, workflows := parseMachinePartsAndWorkflows(lines)
 
@@ -28,10 +28,10 @@ func Day19Part1(lines []string) (string, error) {
 		tot += part.total()
 	}
 
-	return fmt.Sprint(tot), nil
+	return fmt.Sprint(tot)
 }
 
-func Day19Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	const (
 		START int = 1
@@ -66,7 +66,7 @@ func Day19Part2(lines []string) (string, error) {
 		tot += int64(acc.totalParts())
 	}
 
-	return fmt.Sprint(tot), nil
+	return fmt.Sprint(tot)
 }
 
 func parseMachinePartsAndWorkflows(lines []string) ([]*machinePart, map[string]*workflow) {

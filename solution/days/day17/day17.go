@@ -1,11 +1,11 @@
-package days
+package day17
 
 import (
 	"fmt"
 	"strconv"
 )
 
-func Day17Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	ltm := newLavaTraversalMatrixFromStrings(lines)
 
@@ -23,10 +23,10 @@ func Day17Part1(lines []string) (string, error) {
 		nextPos = ltm.positions.pop()
 	}
 
-	return fmt.Sprint(nextPos.heatLoss), nil
+	return fmt.Sprint(nextPos.heatLoss)
 }
 
-func Day17Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	ltm := newLavaTraversalMatrixFromStrings(lines)
 	nextPos := &lavaTraveralPosition{row: 0, col: 0, heatLoss: 0, lastDirection: 0, stepsTakenInDir: 0}
@@ -42,7 +42,7 @@ func Day17Part2(lines []string) (string, error) {
 		nextPos = ltm.positions.pop()
 	}
 
-	return fmt.Sprint(nextPos.heatLoss), nil
+	return fmt.Sprint(nextPos.heatLoss)
 }
 
 const (

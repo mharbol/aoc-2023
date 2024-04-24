@@ -1,4 +1,4 @@
-package days
+package day12
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Day12Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	acc := 0
 
@@ -17,10 +17,10 @@ func Day12Part1(lines []string) (string, error) {
 		acc += countArrangements(parseDay12(line))
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day12Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	acc := 0
 
@@ -31,7 +31,7 @@ func Day12Part2(lines []string) (string, error) {
 		acc += countArrangements(unfold(parseDay12(line)))
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
 type cacheKey struct {

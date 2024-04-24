@@ -1,4 +1,4 @@
-package days
+package day07
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func Day07Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	var hands []camelCardHand
 
@@ -25,14 +25,14 @@ func Day07Part1(lines []string) (string, error) {
 		tot += card.bid * (i + 1)
 	}
 
-	return fmt.Sprint(tot), nil
+	return fmt.Sprint(tot)
 }
 
-func Day07Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	var hands []camelCardHand
 
-    tot := 0
+	tot := 0
 
 	for _, line := range lines {
 		wager, _ := strconv.Atoi(line[6:])
@@ -47,7 +47,7 @@ func Day07Part2(lines []string) (string, error) {
 		tot += card.bid * (i + 1)
 	}
 
-	return fmt.Sprint(tot), nil
+	return fmt.Sprint(tot)
 }
 
 type camelCardHand struct {

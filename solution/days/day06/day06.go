@@ -1,4 +1,4 @@
-package days
+package day06
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func Day06Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	times, distances := parseDay6Part1(lines)
 
@@ -25,19 +25,19 @@ func Day06Part1(lines []string) (string, error) {
 		acc *= count
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day06Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
-    time, distance := parseDay6Part2(lines)
+	time, distance := parseDay6Part2(lines)
 
-    // quadratic formula
-    var root float64 = math.Sqrt(float64(time * time - 4 * distance))
-    left := math.Ceil((float64(time) - root) / 2)
-    right := math.Floor((float64(time) + root) / 2)
+	// quadratic formula
+	var root float64 = math.Sqrt(float64(time*time - 4*distance))
+	left := math.Ceil((float64(time) - root) / 2)
+	right := math.Floor((float64(time) + root) / 2)
 
-	return fmt.Sprint(int(right - left + 1)), nil
+	return fmt.Sprint(int(right - left + 1))
 }
 
 func raceResult(timeTotal, timeTaken int) int {
@@ -66,11 +66,11 @@ func parseDay6Part1(lines []string) ([]int, []int) {
 
 func parseDay6Part2(lines []string) (int, int) {
 
-    timeStr := strings.ReplaceAll(lines[0][6:], " ", "")
-    distStr := strings.ReplaceAll(lines[1][9:], " ", "")
+	timeStr := strings.ReplaceAll(lines[0][6:], " ", "")
+	distStr := strings.ReplaceAll(lines[1][9:], " ", "")
 
-    time, _ := strconv.Atoi(timeStr)
-    distance, _ := strconv.Atoi(distStr)
+	time, _ := strconv.Atoi(timeStr)
+	distance, _ := strconv.Atoi(distStr)
 
 	return time, distance
 }

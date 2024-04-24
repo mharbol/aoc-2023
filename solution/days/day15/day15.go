@@ -1,4 +1,4 @@
-package days
+package day15
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Day15Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	entries := splitLineOnCommas(lines[0])
 
@@ -16,10 +16,10 @@ func Day15Part1(lines []string) (string, error) {
 		tot += reindeerHash(str)
 	}
 
-	return fmt.Sprint(tot), nil
+	return fmt.Sprint(tot)
 }
 
-func Day15Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	entries := splitLineOnCommas(lines[0])
 
@@ -39,13 +39,13 @@ func Day15Part2(lines []string) (string, error) {
 		}
 	}
 
-    tot := 0
-    
-    for _, box := range boxes {
-        tot += box.totalBox()
-    }
+	tot := 0
 
-	return fmt.Sprint(tot), nil
+	for _, box := range boxes {
+		tot += box.totalBox()
+	}
+
+	return fmt.Sprint(tot)
 }
 
 func reindeerHash(str string) int {

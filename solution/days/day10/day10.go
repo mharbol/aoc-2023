@@ -1,11 +1,11 @@
-package days
+package day10
 
 import (
 	"fmt"
 	"strconv"
 )
 
-func Day10Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	s := findS(lines)
 
@@ -22,18 +22,18 @@ func Day10Part1(lines []string) (string, error) {
 		length++
 	}
 
-	return fmt.Sprint(length/2 + length%2), nil
+	return fmt.Sprint(length/2 + length%2)
 }
 
-func Day10Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	// traverse and mark pipes
-	p1Ans, _ := Day10Part1(lines)
+	p1Ans := Part1(lines)
 	halfLen, _ := strconv.Atoi(p1Ans)
 
 	inside := shoelaceArea(vertexList) - halfLen
 
-	return fmt.Sprint(inside), nil
+	return fmt.Sprint(inside)
 }
 
 type coord struct {

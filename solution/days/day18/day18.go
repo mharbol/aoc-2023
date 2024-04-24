@@ -1,4 +1,4 @@
-package days
+package day18
 
 import (
 	"fmt"
@@ -6,18 +6,18 @@ import (
 	"strings"
 )
 
-func Day18Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	digDirs := parseDigPatternP1(lines)
 
-	return fmt.Sprint(getFullArea(digDirs)), nil
+	return fmt.Sprint(getFullArea(digDirs))
 }
 
-func Day18Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	digDirs := parseDigPatternP2(lines)
 
-	return fmt.Sprint(getFullArea(digDirs)), nil
+	return fmt.Sprint(getFullArea(digDirs))
 }
 
 type digDirection struct {

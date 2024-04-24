@@ -1,4 +1,4 @@
-package days
+package day05
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"github.com/mharbol/aoc-2023/util/span"
 )
 
-func Day05Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	minVal := 1<<31 - 1 // max int32 val
 
@@ -26,10 +26,10 @@ func Day05Part1(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(minVal), nil
+	return fmt.Sprint(minVal)
 }
 
-func Day05Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	seedSpans, orderedMappers := parsePart2(lines)
 
@@ -44,7 +44,7 @@ func Day05Part2(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(minVal), nil
+	return fmt.Sprint(minVal)
 }
 
 // basic struct to determine if an `int` is in a certain span and map to an output value

@@ -1,8 +1,8 @@
-package days
+package day13
 
 import "fmt"
 
-func Day13Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	totVert := 0
 	totHorz := 0
@@ -12,10 +12,10 @@ func Day13Part1(lines []string) (string, error) {
 		totHorz += getReflectionIndex(getHorzIntRepr(block))
 	}
 
-	return fmt.Sprint(totHorz*100 + totVert), nil
+	return fmt.Sprint(totHorz*100 + totVert)
 }
 
-func Day13Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	totVert := 0
 	totHorz := 0
@@ -25,7 +25,7 @@ func Day13Part2(lines []string) (string, error) {
 		totHorz += getSmudgeReflectionIndex(getHorzIntRepr(block))
 	}
 
-	return fmt.Sprint(totHorz*100 + totVert), nil
+	return fmt.Sprint(totHorz*100 + totVert)
 }
 
 func getBlocks(lines []string) [][]string {

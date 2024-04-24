@@ -1,4 +1,4 @@
-package days
+package day02
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Day02Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	acc := 0
 
@@ -66,10 +66,10 @@ func Day02Part1(lines []string) (string, error) {
 		}
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day02Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	acc := 0
 
@@ -125,5 +125,5 @@ func Day02Part2(lines []string) (string, error) {
 		acc += power
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }

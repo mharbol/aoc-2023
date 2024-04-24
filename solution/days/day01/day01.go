@@ -1,8 +1,8 @@
-package days
+package day01
 
 import "fmt"
 
-func Day01Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	acc := 0
 
@@ -12,10 +12,10 @@ func Day01Part1(lines []string) (string, error) {
 		acc += 10*first + last
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day01Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	acc := 0
 
@@ -24,7 +24,7 @@ func Day01Part2(lines []string) (string, error) {
 		acc += 10*nums[0] + nums[len(nums)-1]
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
 func firstDigit(line string) int {

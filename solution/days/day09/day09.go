@@ -1,4 +1,4 @@
-package days
+package day09
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Day09Part1(lines []string) (string, error) {
+func Part1(lines []string) string {
 
 	acc := 0
 
@@ -14,10 +14,10 @@ func Day09Part1(lines []string) (string, error) {
 		acc += sumEnds(getDiffLevels(parseLineDay9(line)))
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
-func Day09Part2(lines []string) (string, error) {
+func Part2(lines []string) string {
 
 	acc := 0
 
@@ -25,7 +25,7 @@ func Day09Part2(lines []string) (string, error) {
 		acc += sumDiffFronts(getDiffLevels(parseLineDay9(line)))
 	}
 
-	return fmt.Sprint(acc), nil
+	return fmt.Sprint(acc)
 }
 
 func parseLineDay9(line string) []int {
@@ -77,7 +77,7 @@ func sumDiffFronts(arrs [][]int) int {
 	prev := 0
 
 	for i := len(arrs) - 1; i >= 0; i-- {
-        prev = arrs[i][0] - prev
+		prev = arrs[i][0] - prev
 	}
 	return prev
 }

@@ -7,11 +7,11 @@ import (
 	"github.com/mharbol/aoc-2023/util"
 )
 
-type solFunc func([]string) (string, error)
+type solFunc func([]string) string
 
 type solFuncTuple struct {
-    part1 solFunc
-    part2 solFunc
+	part1 solFunc
+	part2 solFunc
 }
 
 func Solve(day, part uint8) (string, error) {
@@ -28,9 +28,9 @@ func Solve(day, part uint8) (string, error) {
 
 	switch part {
 	case 1:
-		return sol.part1(lines)
+		return sol.part1(lines), nil
 	case 2:
-		return sol.part2(lines)
+		return sol.part2(lines), nil
 	default:
 		return "", errors.New(fmt.Sprintf("Part must be 1 or 2, received %d", part))
 	}
