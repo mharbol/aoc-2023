@@ -147,4 +147,11 @@ Definitely rethinking my idea to pass nearly everything as a reference, sometime
 We'll see if that blends into newer days.
 
 ### [Day 20](solution/days/day20.go)
-TBD
+Another long break but finally back at it.
+Took some time to get rid of my async tests (with enough days they caused collisions in the maps).
+After that I got to solving the problems.
+Part one was alright, just made an interface for `module` type and had them pulse through using a homemade queue.
+Part two was irritating because it was one of those where the problem design made the math work.
+`rx` was fed by a single conjunction whose high pulses were cyclic.
+I found the "feeders" to the that one "root" conjunction and found the cycle of their high pulses.
+The product of these cycles would be when all of the root's pulses were high and so it sent a low.

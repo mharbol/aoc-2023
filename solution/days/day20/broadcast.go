@@ -1,30 +1,33 @@
 package day20
 
-type broadcast struct {
-	modList []*string
-	name    string
+type broadcaster struct {
+    name string
+	mods []string
 }
 
-func newBroadcast(name string, modList []*string) *broadcast {
-	return &broadcast{
-		modList: modList,
-		name:    name,
-	}
+func newBroadcaster(mods []string) *broadcaster {
+    return &broadcaster{
+        name: "broadcaster",
+        mods: mods,
+    }
 }
 
-func (b *broadcast) getName() string {
+func (b *broadcaster) getName() string {
 	return b.name
 }
 
-func (b *broadcast) receive(p pulse, lowCount *int, highCount *int) pulse {
-	if p == LOW_PULSE {
-		*lowCount++
-	} else {
-		*highCount++
-	}
-	return p
+func (b *broadcaster) modList() []string {
+	return b.mods
 }
 
-func (b *broadcast) moduleList() []*string {
-	return b.modList
+func (b *broadcaster) receive(p pulse, from string, highCount, lowCount *int) pulse {
+	if p == LOW_PULSE {
+        *lowCount++
+		*lowCount += len(b.mods)
+		return LOW_PULSE
+	} else {
+		return HIGH_PULSE
+	}
 }
+
+func (b *broadcaster) addIncoming(name string) {}

@@ -1,36 +1,57 @@
 package day20
 
-// import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 func Part1(lines []string) string {
 
-	// lowCount, highCount := 0, 0
+	mods := parseModules(lines)
 
-	return ""
+	highCount, lowCount := 0, 0
+
+	for i := 0; i < 1000; i++ {
+		mods = pressButton(mods, &highCount, &lowCount)
+	}
+
+	return fmt.Sprint(highCount * lowCount)
 }
 
 func Part2(lines []string) string {
 
-	return ""
+	mods := parseModules(lines)
+
+	// get the rxRoot
+	var rxRoot string
+	for name, value := range mods {
+		if slices.Index(value.modList(), "rx") > -1 {
+			rxRoot = name
+			break
+		}
+	}
+
+	// get the "feeders" for rxRoot
+	feeders := make([]string, 0)
+	for name, value := range mods {
+		if slices.Contains(value.modList(), rxRoot) {
+			feeders = append(feeders, name)
+		}
+	}
+	numFeeders := len(feeders)
+
+	feederMap := make(map[string]int)
+	count := 0
+
+	for len(feederMap) != numFeeders {
+		count++
+		mods = pressButtonPart2(mods, rxRoot, feederMap, count)
+	}
+
+	prod := 1
+	for _, num := range feederMap {
+		prod *= num
+	}
+
+	return fmt.Sprint(prod)
 }
-
-type module interface {
-	getName() string
-	moduleList() []*string
-	receive(p pulse, lowCount *int, highCount *int) pulse
-}
-
-type state bool
-
-const (
-	ON  state = true
-	OFF state = false
-)
-
-type pulse int
-
-const (
-	HIGH_PULSE pulse = 0
-	LOW_PULSE  pulse = 1
-	NO_PULSE   pulse = 2
-)

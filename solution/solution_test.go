@@ -4,7 +4,6 @@ import (
 	"os"
 	"path"
 	"runtime"
-	"sort"
 	"testing"
 )
 
@@ -20,34 +19,25 @@ func init() {
 
 func TestAllSolutions(t *testing.T) {
 
-	dayNums := make([]uint8, 0)
-	solutions := make(map[uint8]*testSolutionStruct)
 	for key := range allExpected {
-		dayNums = append(dayNums, key)
-		solutions[key] = runDayX(key)
-	}
 
-	sort.Slice(dayNums, func(i, j int) bool {
-		return dayNums[i] < dayNums[j]
-	})
+		sol := runDayX(key)
 
-	for _, day := range dayNums {
-		expectedStruct, ok := allExpected[day]
+		expectedStruct, ok := allExpected[sol.day]
 		if !ok {
-			t.Fatalf("Error for day %d: No expected value in registry.", day)
+			t.Fatalf("Error for day %d: No expected value in registry.", sol.day)
 		}
-		sol := solutions[day]
 		if sol.err1 != nil {
-			t.Fatalf("Error in day %d part 1: %s", day, sol.err1.Error())
+			t.Fatalf("Error in day %d part 1: %s", sol.day, sol.err1.Error())
 		}
 		if sol.err2 != nil {
-			t.Fatalf("Error in day %d part 2: %s", day, sol.err2.Error())
+			t.Fatalf("Error in day %d part 2: %s", sol.day, sol.err2.Error())
 		}
-		if solutions[day].part1 != allExpected[day].part1 {
-			t.Fatalf("Mismatch in day %d. Expected %s, actual: %s", day, solutions[day].part1, expectedStruct.part1)
+		if sol.part1 != allExpected[sol.day].part1 {
+			t.Fatalf("Mismatch in day %d. Expected %s, actual: %s", sol.day, sol.part1, expectedStruct.part1)
 		}
-		if solutions[day].part2 != allExpected[day].part2 {
-			t.Fatalf("Mismatch in day %d. Expected %s, actual: %s", day, solutions[day].part2, expectedStruct.part2)
+		if sol.part2 != allExpected[sol.day].part2 {
+			t.Fatalf("Mismatch in day %d. Expected %s, actual: %s", sol.day, sol.part2, expectedStruct.part2)
 		}
 	}
 }
