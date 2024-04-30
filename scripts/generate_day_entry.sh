@@ -43,7 +43,6 @@ sed -i "${SOL_REG_ENTRY_LINE}i ${DAY_NUM_STRIP}: {day${DAY_NUM}.Part1, day${DAY_
 # add import to solution registry
 echo "Adding Day ${DAY_NUM} to solution registry import"
 IMPORT_LINE_NUM=`sed -n '/^)$/=' ${SOL_REG_FILE}`
-echo ${IMPORT_LINE_NUM}
 sed -i "${IMPORT_LINE_NUM}i \"github.com/mharbol/aoc-2023/solution/days/day${DAY_NUM}\"" ${SOL_REG_FILE}
 
 go fmt ${SOL_REG_FILE}

@@ -145,3 +145,6 @@ Progressively passed spanned parts through jobs and workflows until they were al
 Definitely rethinking my idea to pass nearly everything as a reference, sometimes a small struct by value *might* end up being better than making
 `copy()` methods all over the place.
 We'll see if that blends into newer days.
+
+### [Day 20](solution/days/day20.go)
+TBD

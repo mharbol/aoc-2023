@@ -5,7 +5,6 @@ import (
 	"path"
 	"runtime"
 	"sort"
-	"sync"
 	"testing"
 )
 
@@ -21,24 +20,11 @@ func init() {
 
 func TestAllSolutions(t *testing.T) {
 
-	var wg sync.WaitGroup
-	dayChan := make(chan *testSolutionStruct)
-
-	for key := range allExpected {
-		wg.Add(1)
-		go runDayX(key, dayChan, &wg)
-	}
-
-	go func() {
-		defer close(dayChan)
-		wg.Wait()
-	}()
-
 	dayNums := make([]uint8, 0)
 	solutions := make(map[uint8]*testSolutionStruct)
-	for sol := range dayChan {
-		dayNums = append(dayNums, sol.day)
-		solutions[sol.day] = sol
+	for key := range allExpected {
+		dayNums = append(dayNums, key)
+		solutions[key] = runDayX(key)
 	}
 
 	sort.Slice(dayNums, func(i, j int) bool {
@@ -72,9 +58,8 @@ type testSolutionStruct struct {
 	err1, err2   error
 }
 
-func runDayX(day uint8, ch chan<- *testSolutionStruct, wg *sync.WaitGroup) {
-	defer wg.Done()
+func runDayX(day uint8) *testSolutionStruct {
 	p1Actual, e1 := Solve(day, 1)
 	p2Actual, e2 := Solve(day, 2)
-	ch <- &testSolutionStruct{day: day, part1: p1Actual, part2: p2Actual, err1: e1, err2: e2}
+	return &testSolutionStruct{day: day, part1: p1Actual, part2: p2Actual, err1: e1, err2: e2}
 }

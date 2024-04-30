@@ -20,6 +20,7 @@ import (
 	"github.com/mharbol/aoc-2023/solution/days/day17"
 	"github.com/mharbol/aoc-2023/solution/days/day18"
 	"github.com/mharbol/aoc-2023/solution/days/day19"
+	"github.com/mharbol/aoc-2023/solution/days/day20"
 )
 
 var allSolutions = map[uint8]*solFuncTuple{
@@ -42,4 +43,5 @@ var allSolutions = map[uint8]*solFuncTuple{
 	17: {day17.Part1, day17.Part2},
 	18: {day18.Part1, day18.Part2},
 	19: {day19.Part1, day19.Part2},
+	20: {day20.Part1, day20.Part2},
 }
