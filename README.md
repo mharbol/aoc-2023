@@ -158,11 +158,11 @@ The product of these cycles would be when all of the root's pulses were high and
 
 ### [Day 21](solution/days/day21/day21.go)
 Part one was really fun, had to read carefully to see that it is where the elf *ends up* and not where he can walk.
-Since it is an even number of steps, I made a `walkMap` of where he has gone from each new point.
-If at a new point he walks to a vacant point or previously odd point, I mark it with the number of steps.
-If he steps on an even point, I leave it alone because that point can be reached in the even number of steps specified.
-This makes my looping faster because I am not checking that point on the next iteration.
-Doing this in the map was really easy; I had to review the logic a few times to make sure that was all I needed.
+I made a `walkMap` of where he has gone from each new point.
+If he walks to a vacant point, I mark it with the number of steps to get there.
+Since any plot is an even or odd square as far as steps to get there, any even square within 64 steps is one where you can end up.
+All that's left is counting the even stepped squares after 64 steps.
+Doing the steps in the map was really easy, surprised this was it.
 
 ```go
 type coord struct {
@@ -170,12 +170,10 @@ type coord struct {
 }
 
 func walkToPoint(point coord, walkMap map[coord]int, steps int) {
-	stepsCurrent, ok := walkMap[point]
-	if !ok || steps%2 == 0 && stepsCurrent%2 == 1 {
+	if _, ok := walkMap[point]; !ok {
 		walkMap[point] = steps
 	}
 }
-
 ```
 
 Part two will have to wait.

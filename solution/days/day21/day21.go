@@ -18,17 +18,30 @@ func Part1(lines []string) string {
 		}
 	}
 
+	return fmt.Sprint(countEven(walkMap))
+}
+
+func Part2(lines []string) string {
+
+    return ""
+}
+
+func countEven(walkMap map[coord]int) int {
 	total := 0
 	for _, count := range walkMap {
 		if count%2 == 0 {
 			total++
 		}
 	}
-
-	return fmt.Sprint(total)
+	return total
 }
 
-func Part2(lines []string) string {
-
-	return ""
+func countOdd(walkMap map[coord]int) int {
+	total := 0
+	for _, count := range walkMap {
+		if count%2 == 1 {
+			total++
+		}
+	}
+	return total
 }
