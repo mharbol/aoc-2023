@@ -155,3 +155,6 @@ Part two was irritating because it was one of those where the problem design mad
 `rx` was fed by a single conjunction whose high pulses were cyclic.
 I found the "feeders" to the that one "root" conjunction and found the cycle of their high pulses.
 The product of these cycles would be when all of the root's pulses were high and so it sent a low.
+
+### [Day 21](solution/days/day21.go)
+TBD
