@@ -56,7 +56,7 @@ go fmt ${EXP_REG_FILE}
 # append README
 echo "Writing Day ${DAY_NUM} entry to README.md"
 echo "" >> ${CURR_DIR}/README.md
-echo "### [Day ${DAY_NUM}](solution/days/day${DAY_NUM}.go)" >> ${CURR_DIR}/README.md
+echo "### [Day ${DAY_NUM}](solution/days/day${DAY_NUM}/day${DAY_NUM}.go)" >> ${CURR_DIR}/README.md
 echo "TBD" >> ${CURR_DIR}/README.md
 
 exit 0

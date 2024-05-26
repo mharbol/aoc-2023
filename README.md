@@ -146,7 +146,7 @@ Definitely rethinking my idea to pass nearly everything as a reference, sometime
 `copy()` methods all over the place.
 We'll see if that blends into newer days.
 
-### [Day 20](solution/days/day20.go)
+### [Day 20](solution/days/day20/day20.go)
 Another long break but finally back at it.
 Took some time to get rid of my async tests (with enough days they caused collisions in the maps).
 After that I got to solving the problems.
@@ -156,7 +156,7 @@ Part two was irritating because it was one of those where the problem design mad
 I found the "feeders" to the that one "root" conjunction and found the cycle of their high pulses.
 The product of these cycles would be when all of the root's pulses were high and so it sent a low.
 
-### [Day 21](solution/days/day21.go)
+### [Day 21](solution/days/day21/day21.go)
 Part one was really fun, had to read carefully to see that it is where the elf *ends up* and not where he can walk.
 Since it is an even number of steps, I made a `walkMap` of where he has gone from each new point.
 If at a new point he walks to a vacant point or previously odd point, I mark it with the number of steps.
