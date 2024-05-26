@@ -157,4 +157,25 @@ I found the "feeders" to the that one "root" conjunction and found the cycle of 
 The product of these cycles would be when all of the root's pulses were high and so it sent a low.
 
 ### [Day 21](solution/days/day21.go)
-TBD
+Part one was really fun, had to read carefully to see that it is where the elf *ends up* and not where he can walk.
+Since it is an even number of steps, I made a `walkMap` of where he has gone from each new point.
+If at a new point he walks to a vacant point or previously odd point, I mark it with the number of steps.
+If he steps on an even point, I leave it alone because that point can be reached in the even number of steps specified.
+This makes my looping faster because I am not checking that point on the next iteration.
+Doing this in the map was really easy; I had to review the logic a few times to make sure that was all I needed.
+
+```go
+type coord struct {
+	row, col int
+}
+
+func walkToPoint(point coord, walkMap map[coord]int, steps int) {
+	stepsCurrent, ok := walkMap[point]
+	if !ok || steps%2 == 0 && stepsCurrent%2 == 1 {
+		walkMap[point] = steps
+	}
+}
+
+```
+
+Part two will have to wait.
