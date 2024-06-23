@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-    out, err := cmd.RunProb(&cmd.CmdParser{})
+	out, err := cmd.RunProb(&cmd.CmdParser{})
 
-    if err != nil {
-        fmt.Println(err.Error())
-    } else {
-        fmt.Println(out)
-    }
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(out)
+	}
 }
