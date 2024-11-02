@@ -32,7 +32,7 @@ Once looping was complete, sum the products of the lists with exactly two items.
 
 ### [Day 04](solution/days/day04/day04.go)
 Today felt really good.
-Got comforable with some of Go's packages like `regexp` and `strings`.
+Got comfortable with some of Go's packages like `regexp` and `strings`.
 The have some nifty functions to use... just have to remember there are more functions than methods.
 For part one I was able to pull out the card number, separate the left and right sides, and get lists of number (as strings) very easily.
 From there the winning number strings were the keys to a `map` with their count (initially 0).
@@ -101,12 +101,12 @@ Being clever in part one paid off for part two.
 I represented the lines of `#` and `.` as the bits `1` and `0` respectively.
 For part one, this made the comparison a lot quicker and easy since they were just unsigned ints.
 This paid off in part two where all I needed to do was let the comparison go through if the lines were equal or `xor`ed to a power of two (one smudged bit).
-From there, I knew it was the line of reflection if there was exatly one power of two for that comparison.
+From there, I knew it was the line of reflection if there was exactly one power of two for that comparison.
 
 ### [Day 14](solution/days/day14/day14.go)
 Making the stones move around the `platform` reminded me of the Jump Game problems in LeetCode.
 Part one was easy enough to move all the rocks off of a given tilt and then sum the weights (I knew all four directions was coming).
-For part two I knew the platform would eventully come into a cyclic state.
+For part two I knew the platform would eventually come into a cyclic state.
 I used the step it reached that state and the step it started to determine the period.
 The remaining steps to go mod the period is the number of steps to go from the current state to the end state without completing one billion iterations.
 
@@ -166,13 +166,13 @@ Doing the steps in the map was really easy, surprised this was it.
 
 ```go
 type coord struct {
-	row, col int
+    row, col int
 }
 
 func walkToPoint(point coord, walkMap map[coord]int, steps int) {
-	if _, ok := walkMap[point]; !ok {
-		walkMap[point] = steps
-	}
+    if _, ok := walkMap[point]; !ok {
+        walkMap[point] = steps
+    }
 }
 ```
 
